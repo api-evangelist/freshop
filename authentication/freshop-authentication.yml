@@ -1,0 +1,24 @@
+generated: '2026-07-19'
+method: searched
+source: live probe of https://api.freshop.com (missing/invalid app_key responses)
+summary:
+  types: [apiKey]
+  api_key_in: [query]
+  api_key_names: [app_key]
+  notes: >-
+    The Freshop API authenticates every request with an application key passed
+    as the `app_key` query-string parameter. A missing key returns HTTP 400
+    `{"error_code":"invalid_input","error_message":"app_key: is required"}`;
+    an invalid key returns HTTP 400 `"app_key: <value> is invalid"`. User- and
+    session-scoped calls additionally accept a `token` parameter obtained from
+    the login/session endpoints (not verifiable without credentials).
+schemes:
+  - name: appKey
+    type: apiKey
+    in: query
+    parameter: app_key
+    required: true
+    sources: [live https://api.freshop.com]
+    evidence:
+      - 'GET /1/stores -> 400 {"error_code":"invalid_input","error_message":"app_key: is required"}'
+      - 'GET /1/stores?app_key=bad_key_test -> 400 "app_key: bad_key_test is invalid"'
