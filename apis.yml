@@ -1,7 +1,27 @@
 aid: freshop
 name: Freshop
-description: Freshop is a company surfaced as a portfolio company of 500-global and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Freshop is an eCommerce platform purpose-built for grocery and specialty
+  retail, now part of NCR Voyix. It powers branded online storefronts, mobile
+  shopping, order fulfillment, pickup, and delivery for independent and
+  regional grocers, and integrates third-party services for loyalty, coupons,
+  email, SMS, and fulfillment. Freshop exposes a live REST API at
+  api.freshop.com that serves store and product data to Freshop-powered
+  storefronts and apps, authenticated with an application key (app_key)
+  query-string parameter and versioned by a numeric path segment.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://freshop.com/favicon.ico
 url: https://raw.githubusercontent.com/api-evangelist/freshop/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,10 +31,33 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-19'
 tags:
 - Company
-apis: []
+- Grocery
+- eCommerce
+- Retail
+- Online Shopping
+- Fulfillment
+- Delivery
+- NCR Voyix
+apis:
+- name: Freshop API
+  description: >-
+    Live REST API serving grocery store and product data to Freshop-powered
+    storefronts. Numeric path versioning (/1/, /2/); app_key query-parameter
+    authentication; flat JSON error envelope.
+  humanURL: https://freshop.com
+  baseURL: https://api.freshop.com
+  properties:
+  - type: Authentication
+    url: authentication/freshop-authentication.yml
+  - type: ErrorCatalog
+    url: errors/freshop-problem-types.yml
+  - type: Conventions
+    url: conventions/freshop-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/freshop-lifecycle.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -23,3 +66,18 @@ maintainers:
 common:
 - type: Website
   url: https://freshop.com
+- type: Support
+  url: https://freshop.com
+- type: PrivacyPolicy
+  url: https://www.ncr.com/privacy
+- type: WellKnown
+  url: well-known/freshop-well-known.yml
+- type: DomainSecurity
+  url: security/freshop-domain-security.yml
+- type: LLMsTxt
+  url: llms/freshop-llms.txt
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

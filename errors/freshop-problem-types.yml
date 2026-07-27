@@ -1,0 +1,32 @@
+generated: '2026-07-19'
+method: searched
+source: live probe of https://api.freshop.com
+format: custom-json
+envelope:
+  description: >-
+    Freshop returns a flat JSON error envelope (NOT RFC 9457 problem+json).
+    Content-Type is application/json;charset=utf-8. HTTP status carries the
+    class (400 for validation). Unknown routes return the plain-text body
+    "NotFound" with a 404 status rather than the JSON envelope.
+  fields:
+    error_code: machine-readable error identifier (e.g. invalid_input)
+    error_message: 'human-readable message, often "<field>: <detail>"'
+    error_additional_text: array of offending field names / extra context
+problems:
+  - status: 400
+    error_code: invalid_input
+    title: Invalid input
+    detail_examples:
+      - 'app_key: is required'
+      - 'app_key: bad_key_test is invalid'
+    remediation: >-
+      Supply a valid `app_key` query parameter (and required resource params).
+      The error_additional_text array lists the offending field(s).
+    evidence: 'GET /1/stores, GET /1/products (live)'
+  - status: 404
+    error_code: null
+    title: Not Found
+    detail_examples:
+      - 'NotFound'
+    remediation: Verify the version segment and resource path.
+    evidence: 'GET /1/nonexistent_endpoint?app_key=x -> 404 "NotFound" (live)'

@@ -1,0 +1,21 @@
+generated: '2026-07-19'
+method: derived
+source: live probe of https://api.freshop.com
+versioning:
+  scheme: uri-path-numeric
+  pattern: 'https://api.freshop.com/{version}/{resource}'
+  observed_versions: [1, 2]
+  current: 2
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or Sunset/Deprecation header support observed.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  Freshop is an NCR Voyix grocery-eCommerce platform; there is no public
+  developer portal, changelog, status page, or SLA. Version generations are
+  distinguished only by the numeric path segment. Retailer support runs
+  through the NCR Voyix / Freshop retailer support portal.

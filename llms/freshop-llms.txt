@@ -1,0 +1,22 @@
+# Freshop
+
+> Freshop is an eCommerce platform purpose-built for grocery and specialty retail, now part of NCR Voyix. It powers branded online shopping, order fulfillment, pickup, and delivery for independent and regional grocers. A live REST API at api.freshop.com serves store and product data to Freshop-powered storefronts and mobile apps, authenticated with an application key (`app_key`) query parameter.
+
+## API
+- [Freshop API (base)](https://api.freshop.com): REST API, numeric path versioning (/1/, /2/), app_key query-parameter auth. Resources include stores and products.
+
+## Docs
+- [Freshop platform site](https://freshop.com): Marketing and feature overview (NCR Voyix | Freshop).
+- [Retailer Support Portal](https://freshop.com): Free retailer accounts, help tickets, and knowledge base.
+- [NCR Privacy Policy](https://www.ncr.com/privacy): Privacy policy governing the platform.
+
+## Artifacts (API Evangelist enrichment)
+- [Authentication](authentication/freshop-authentication.yml): app_key query-parameter API key.
+- [Error catalog](errors/freshop-problem-types.yml): flat JSON error envelope (error_code/error_message/error_additional_text).
+- [Conventions](conventions/freshop-conventions.yml): auth, versioning, error envelope, CORS, security headers.
+- [Lifecycle](lifecycle/freshop-lifecycle.yml): numeric path versioning, current generation v2.
+- [Domain security](security/freshop-domain-security.yml): TLS/HSTS/SPF/DMARC probe.
+- [Well-known index](well-known/freshop-well-known.yml): /.well-known/* probe results (none published).
+
+## Notes
+- No public developer portal, changelog, status page, SLA, OpenAPI, SDK, or MCP server was found. Retailer integration runs through NCR Voyix / Freshop support.

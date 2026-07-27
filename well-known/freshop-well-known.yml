@@ -1,0 +1,27 @@
+generated: '2026-07-19'
+method: searched
+source: live probes of /.well-known/* on Freshop hosts
+hosts:
+  - host: https://api.freshop.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+  - host: https://www.freshop.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 403        # WAF-blocked, no published document
+      - path: /.well-known/openid-configuration
+        status: 403
+      - path: /.well-known/oauth-authorization-server
+        status: 403
+      - path: /.well-known/api-catalog
+        status: 403
+      - path: /.well-known/ai-plugin.json
+        status: 403
+notes: >-
+  No well-known discovery documents are published. api.freshop.com returns 404
+  for well-known paths; www.freshop.com is behind a WAF that returns 403 for
+  all /.well-known/* paths (no real document served). No 200 responses; nothing
+  saved.

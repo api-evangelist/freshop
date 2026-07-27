@@ -1,0 +1,45 @@
+generated: '2026-07-19'
+method: searched
+source: live probe of https://api.freshop.com
+conventions:
+  authentication:
+    style: api-key
+    location: query
+    parameter: app_key
+    ref: authentication/freshop-authentication.yml
+  versioning:
+    scheme: uri-path-numeric
+    pattern: 'https://api.freshop.com/{version}/{resource}'
+    observed_versions: [1, 2]
+    current: 2
+    notes: >-
+      Version is the first path segment as a bare integer (/1/, /2/). Both
+      route live; v2 is the current generation used by Freshop storefronts.
+    ref: lifecycle/freshop-lifecycle.yml
+  error_envelope:
+    shape: flat-json
+    fields: [error_code, error_message, error_additional_text]
+    content_type: application/json;charset=utf-8
+    not_rfc9457: true
+    ref: errors/freshop-problem-types.yml
+  cors:
+    access_control_allow_origin: '*'
+    access_control_allow_methods: [GET, POST, PUT, DELETE, OPTIONS]
+  security_headers:
+    strict_transport_security: max-age=31536000
+    x_content_type_options: nosniff
+    x_frame_options: SAMEORIGIN
+    x_xss_protection: '1; mode=block'
+    content_security_policy: "default-src 'none'; frame-ancestors *"
+    referrer_policy: origin-when-cross-origin
+  idempotency:
+    supported: false
+    notes: No Idempotency-Key header or documented idempotency contract observed.
+  pagination:
+    notes: >-
+      Not verifiable without a valid app_key; Freshop list endpoints
+      (stores, products) are known to accept limit/skip-style params but this
+      was not confirmed live, so it is left unasserted rather than fabricated.
+  request_tracing:
+    request_id_header: null
+    notes: No request-id/correlation header observed on responses.
